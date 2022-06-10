@@ -8,6 +8,8 @@ public interface GenreService {
 
 	public List<Genre> findAllGenres();
 
+	public List<Genre> searchGenres(String keyword);
+
 	public Genre findGenreById(Long id);
 
 	public void createGenre(Genre category);

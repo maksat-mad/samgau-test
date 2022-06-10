@@ -1,12 +1,14 @@
 package com.samgau.service;
 
-import java.util.List;
-
 import com.samgau.entity.Author;
+
+import java.util.List;
 
 public interface AuthorService {
 
 	public List<Author> findAllAuthors();
+
+	public List<Author> searchAuthors(String keyword);
 
 	public Author findAuthorById(Long id);
 

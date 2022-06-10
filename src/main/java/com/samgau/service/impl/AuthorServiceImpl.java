@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 @Service
 public class AuthorServiceImpl implements AuthorService {
@@ -22,6 +24,15 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public List<Author> findAllAuthors() {
         return authorRepository.findAll();
+    }
+
+    @Override
+    public List<Author> searchAuthors(String keyword) {
+        return authorRepository.findAll()
+                .stream()
+                .filter(x -> x.getAuthorName().toLowerCase().replace(" ", "")
+                        .contains(keyword.toLowerCase().replace(" ", "")))
+                .collect(Collectors.toList());
     }
 
     @Override

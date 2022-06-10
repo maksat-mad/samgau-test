@@ -7,7 +7,7 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet"href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-	<link rel="stylesheet"href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+	<link rel="stylesheet"href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
 	
 </head>
 <body>
@@ -16,13 +16,22 @@
 		<div class="card">
 			<div class="card-body">
 				<div th:switch="${books}" class="container my-5">
+
+					<form th:action="@{/searchBook}" class="form-inline my-2 my-lg-0">
+						<input class="form-control mr-sm-2" name= "keyword" id = "keyword"
+							   type="text" placeholder="Search Book Title" aria-label="Search"
+							   style="width: 75%" th:value="${keyword}">
+						<input class="btn btn-outline-success active my-2 my-sm-0" type="submit" value="Search" />
+					</form>
+
 					<p class="my-5">
-						<a href="/add" class="btn btn-primary"> 
-						<i class="fas fa-user-plus ml-2">  Add Book </i></a>
+						<a href="/addBook" class="btn btn-primary d-flex align-items-center justify-content-center" style="width: 40%">
+							<i class="fa-solid fa-book" style="font-size: 40px; margin-right: 15px; "></i>
+							<b>Add Book</b></a>
 					</p>
+
 					<div class="col-md-12">
-						<h2 th:case="null">No record found !!</h2>
-						<div th:case="*">
+						<div>
 							<table class="table table-striped table-responsive-md">
 								<thead>
 									<tr>
@@ -30,9 +39,9 @@
 										<th>Author Name</th>
 										<th>Genre</th>
 										<th>Available</th>
-										<th>Detail</th>
 										<th>Edit</th>
-										<th>Delete</th>
+										<th>Remove</th>
+										<th>Add</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -42,8 +51,8 @@
 										<td th:text="${book.genre.genreName}"></td>
 										<td th:text="${book.amount}"></td>
 										<td><a th:href="@{/book/{id}(id=${book.bookId})}" class="btn btn-primary"><i class="fas fa-marker ml-2"></i></a></td>
-										<td><a th:href="@{/update/{id}(id=${book.bookId})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
-										<td><a th:href="@{/remove-book/{id}(id=${book.bookId})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+										<td><a th:href="@{/update/{id}(id=${book.bookId})}" class="btn btn-primary"><i class="fa-solid fa-minus ml-1 mr-1"></i></a></td>
+										<td><a th:href="@{/remove-book/{id}(id=${book.bookId})}" class="btn btn-primary"><i class="fa-solid fa-plus ml-1 mr-1"></i></a></td>
 									</tr>
 								</tbody>
 							</table>
@@ -53,7 +62,7 @@
 			</div>
 		</div>
 	</div>
-	<div th:insert="fragments/footer :: footer"></div>
+	<div style="margin-top: 100px" th:insert="fragments/footer :: footer"></div>
 </body>
 
 </html>

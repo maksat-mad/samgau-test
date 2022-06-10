@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class GenreServiceImpl implements GenreService {
@@ -22,6 +23,15 @@ public class GenreServiceImpl implements GenreService {
     @Override
     public List<Genre> findAllGenres() {
         return genreRepository.findAll();
+    }
+
+    @Override
+    public List<Genre> searchGenres(String keyword) {
+        return genreRepository.findAll()
+                .stream()
+                .filter(x -> x.getGenreName().toLowerCase().replace(" ", "")
+                        .contains(keyword.toLowerCase().replace(" ", "")))
+                .collect(Collectors.toList());
     }
 
     @Override

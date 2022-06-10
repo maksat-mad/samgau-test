@@ -34,5 +34,4 @@ public class Book {
     @JoinColumn(name = "genre_id")
     @JsonIgnore
     private Genre genre;
-
 }

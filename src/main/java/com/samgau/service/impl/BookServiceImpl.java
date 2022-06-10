@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -26,10 +27,11 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<Book> searchBooks(String keyword) {
-        if (keyword != null) {
-            return bookRepository.search(keyword);
-        }
-        return bookRepository.findAll();
+        return bookRepository.findAll()
+                .stream()
+                .filter(x -> x.getTitle().toLowerCase().replace(" ", "")
+                        .contains(keyword.toLowerCase().replace(" ", "")))
+                .collect(Collectors.toList());
     }
 
     @Override
