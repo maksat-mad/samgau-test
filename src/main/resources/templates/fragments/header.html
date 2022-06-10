@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Header</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet"href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<link rel="stylesheet"href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+	
+</head>
+
+<body>
+
+<nav th:fragment= "header" class="navbar navbar-expand-lg navbar-dark" style="background-color: #283a4f; color: white;">
+  <div class="container" style="font-size: 20px;">
+    <a class="navbar-brand">Samgau Library</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+
+    <div class="d-flex align-items-center justify-content-between">
+      <div class="nav-item active">
+        <a class="nav-link" href="/" style="color: white">Home <span class="sr-only"></span></a>
+      </div>
+      <div class="nav-item active">
+        <a class="nav-link" href="/authors" style="color: white">Authors </a>
+      </div>
+      <div class="nav-item active">
+        <a class="nav-link" href="/books" style="color: white">Books </a>
+      </div>
+      <div class="nav-item active">
+        <a class="nav-link" href="/genres" style="color: white">Genres </a>
+      </div>
+    </div>
+
+    </div>
+  </div>
+</nav>
+
+</body>
+</html>
