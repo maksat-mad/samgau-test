@@ -14,18 +14,18 @@
 	<div th:insert="fragments/header :: header"></div>
 
 	<div class="container">
-		<div class="d-flex align-items-center justify-content-between">
+		<div class="d-flex align-items-center justify-content-around">
 			<div style="margin-top: 200px">
-				<button type="button" class="btn btn-secondary"
-						style="height: 150px; width: 300px; font-size: 30px; border-radius: 50%;">Guest</button>
+				<a th:href="@{/logout}">
+					<button type="button" class="btn btn-secondary"
+							style="height: 150px; width: 300px; font-size: 30px; border-radius: 50%;">Guest</button>
+				</a>
 			</div>
 			<div style="margin-top: 200px">
-				<button type="button" class="btn btn-primary"
-						style="height: 150px; width: 300px; font-size: 30px; border-radius: 50%;">Student</button>
-			</div>
-			<div style="margin-top: 200px">
-				<button type="button" class="btn btn-success"
-						style="height: 150px; width: 300px; font-size: 30px; border-radius: 50%;">Librarian</button>
+				<a th:href="@{/login}">
+					<button type="button" class="btn btn-primary"
+						   style="height: 150px; width: 300px; font-size: 30px; border-radius: 50%;">Login</button>
+				</a>
 			</div>
 		</div>
 	</div>
