@@ -12,9 +12,9 @@ public interface GenreService {
 
 	public Genre findGenreById(Long id);
 
-	public void createGenre(Genre category);
+	public void createGenre(Genre genre);
 
-	public void updateGenre(Genre category);
+	public void updateGenre(Genre genre);
 
 	public void deleteGenre(Long id);
 

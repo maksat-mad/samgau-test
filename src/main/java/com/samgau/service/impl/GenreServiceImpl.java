@@ -37,7 +37,7 @@ public class GenreServiceImpl implements GenreService {
     @Override
     public Genre findGenreById(Long id) {
         return genreRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException(String.format("Category not found  with ID %d", id)));
+                .orElseThrow(() -> new NotFoundException(String.format("Genre not found  with ID %d", id)));
     }
 
     @Override
@@ -53,7 +53,7 @@ public class GenreServiceImpl implements GenreService {
     @Override
     public void deleteGenre(Long id) {
         final Genre genre = genreRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException(String.format("Category not found  with ID %d", id)));
+                .orElseThrow(() -> new NotFoundException(String.format("Genre not found  with ID %d", id)));
 
         genreRepository.deleteById(genre.getGenreId());
     }

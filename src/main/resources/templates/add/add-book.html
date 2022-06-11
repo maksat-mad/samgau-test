@@ -3,13 +3,12 @@
 
 <head>
 <meta charset="utf-8">
-<meta http-equiv="x-ua-compatible" content="ie=edge">
 <title>Add Book</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+	href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
 </head>
 
 <body>
@@ -24,50 +23,31 @@
 						<div class="row">
 
 							<div class="form-group col-md-8">
-								<label for="isbn" class="col-form-label">ISBN</label> 
-								<input type="text" th:field="*{isbn}" class="form-control" id="isbn" placeholder="ISBN" /> 
-								<span th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}"></span>
+								<label for="title" class="col-form-label">Title</label>
+								<input type="text" th:field="*{title}" required="required" class="form-control" id="title" placeholder="Title" />
 							</div>
 
 							<div class="form-group col-md-8">
-								<label for="name" class="col-form-label">Book Name</label> 
-								<input type="text" th:field="*{name}" class="form-control" id="name"placeholder="Book Name" />
+								<label for="amount" class="col-form-label">Amount</label>
+								<input type="text" th:field="*{amount}" required="required" pattern="[1-9]\d*" class="form-control" id="amount" placeholder="Amount" />
 							</div>
 
-							<div class="form-group col-md-8">
-								<label for="serialName" class="col-form-label">SerialName </label> 
-								<input type="text" th:field="*{serialName}" class="form-control" id="serialName" placeholder="Serial Name" />
-							</div>
-
-							<div class="form-group col-md-8">
-								<label for="description" class="col-form-label">Description</label>
-								<input type="text" th:field="*{description}" class="form-control" id="description" placeholder="Description" />
-							</div>
-							
-					
-							<div class="form-group col-md-8">
-								<label for="category" class="col-form-label">Category</label>
-								<select th:field ="*{categories}" class="form-control" >
-   									<option th:each="category: ${categories}" th:value="${category.id}" th:text = "${category.name}"></option>
-								</select>
-							</div>
-							
 							<div class="form-group col-md-8">
 								<label for="author" class="col-form-label">Author</label>
-								<select th:field ="*{authors}" class="form-control" >
-   									<option th:each="author: ${authors}" th:value="${author.id}" th:text = "${author.name}"></option>
+								<select th:field ="*{author}" class="form-control" >
+									<option th:each="author1: ${allAuthors}" th:value="${author1.authorId}" th:text = "${author1.authorName}"></option>
 								</select>
-							</div>	
-
+							</div>
+					
 							<div class="form-group col-md-8">
-								<label for="publisher" class="col-form-label">Publisher</label>
-								<select th:field ="*{publishers}" class="form-control" >
-   									<option th:each="publisher: ${publishers}" th:value="${publisher.id}" th:text = "${publisher.name}"></option>
+								<label for="genre" class="col-form-label">Genre</label>
+								<select th:field ="*{genre}" class="form-control" >
+   									<option th:each="genre1: ${allGenres}" th:value="${genre1.genreId}" th:text = "${genre1.genreName}"></option>
 								</select>
 							</div>
 							
 							<div class="col-md-6">
-								<input type="submit" class="btn btn-primary" value=" Submit ">
+								<input type="submit" class="btn btn-primary" value=" Add Book ">
 							</div>
 
 						</div>

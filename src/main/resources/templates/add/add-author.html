@@ -21,16 +21,11 @@
                             
                             <div class="form-group col-md-8">
                                 <label for="authorName" class="col-form-label">Author Name</label>
-                                <input type="text" th:field="*{authorName}" class="form-control" id="authorName" placeholder="Author Name" />
-                            </div>
-                            
-                             <div class="form-group col-md-8">
-                                <label for="books" class="col-form-label">Books</label>
-                                <input type="text" th:field="*{books}" class="form-control" id="books" placeholder="Books" />
+                                <input type="text" th:field="*{authorName}" required="required" class="form-control" id="authorName" placeholder="Author Name" />
                             </div>
  
                             <div class="col-md-6">
-                                <input type="submit" class="btn btn-primary" value=" Submit ">
+                                <input type="submit" class="btn btn-primary" value=" Add Author ">
                             </div>
      
                         </div>

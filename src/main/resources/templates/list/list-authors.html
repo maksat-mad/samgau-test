@@ -43,7 +43,7 @@
 									<tr th:each="author : ${authors}">
 										<td th:text="${author.authorName}"></td>
 
-										<td>
+										<td th:if="${author.books != null}">
 											<table>
 												<tbody>
 												<tr th:each="book : ${author.books}">
