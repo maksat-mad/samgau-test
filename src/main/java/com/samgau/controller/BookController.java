@@ -108,7 +108,7 @@ public class BookController {
     public String showShelfBooks(@PathVariable("shelf") String shelf, Model model) {
         final List<Book> books = bookService.findAllBooks()
                 .stream()
-                .filter(obj -> obj.getGenre().getGenreName().equals(shelf))
+                .filter(obj -> obj.getGenre() != null && obj.getGenre().getGenreName().equals(shelf))
                 .collect(Collectors.toList());
         model.addAttribute("books", books);
         return "list/list-books";
