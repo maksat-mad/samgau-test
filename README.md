@@ -3,7 +3,7 @@
 
 #### The project has front-end, thus you just need to run spring boot application.
 <br>
-video explanation link: httpshttps://youtu.be/HVJqAidy96k://youtu.be/HVJqAidy96k
+video explanation link: https://youtu.be/HVJqAidy96k://youtu.be/HVJqAidy96k
 <br>
 
 #### port number: 8080
