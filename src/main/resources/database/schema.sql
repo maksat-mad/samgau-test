@@ -17,6 +17,7 @@ CREATE TABLE book
     author_id INT,
     genre_id  INT,
     amount    INT,
+    price INT,
     FOREIGN KEY (author_id) REFERENCES author (author_id) ON DELETE SET NULL,
     FOREIGN KEY (genre_id) REFERENCES genre (genre_id) ON DELETE SET NULL
 );
@@ -34,6 +35,7 @@ CREATE TABLE borrowed
     book_id         INT,
     title           VARCHAR(50),
     borrowed_amount INT,
+    price INT,
 
     author_id       INT,
     genre_id        INT,

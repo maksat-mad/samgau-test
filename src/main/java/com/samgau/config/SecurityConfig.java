@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "index",
                         "/authors", "/books", "/genres",
-                        "/searchAuthor", "/searchBook", "/searchGenre").permitAll()
+                        "/searchAuthor", "/searchBook", "/searchGenre", "/see/**").permitAll()
                 .antMatchers("/profile").hasRole(STUDENT.name())
                 .antMatchers("/profile/**").hasAnyRole(STUDENT.name(), LIBRARIAN.name())
                 .antMatchers("/update/**", "/remove-one-book/**", "/increase-book/**",

@@ -24,6 +24,9 @@ public class Book {
     @Column(name = "amount")
     private Integer amount;
 
+    @Column(name = "price")
+    private Integer price;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "author_id")
     @JsonIgnore

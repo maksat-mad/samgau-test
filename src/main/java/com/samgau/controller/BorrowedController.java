@@ -40,12 +40,15 @@ public class BorrowedController {
                 .filter(el -> el.getStudent().getStudentName().equals(name))
                 .collect(Collectors.toList());
         model.addAttribute("borroweds", result);
+        model.addAttribute("money", calculateMoney(result));
         return "student/profile";
     }
 
     @RequestMapping("/borrows")
     public String findAllBorrowedBooks(Model model) {
-        model.addAttribute("borroweds", borrowedService.findAllBorrowedBooks());
+        final List<Borrowed> borroweds = borrowedService.findAllBorrowedBooks();
+        model.addAttribute("borroweds", borroweds);
+        model.addAttribute("money", calculateMoney(borroweds));
         return "librarian/borrows";
     }
 
@@ -67,6 +70,7 @@ public class BorrowedController {
             borrowed.setBookId(book.getBookId());
             borrowed.setTitle(book.getTitle());
             borrowed.setBorrowedAmount(0);
+            borrowed.setPrice(book.getPrice());
             borrowed.setAuthor(book.getAuthor());
             borrowed.setGenre(book.getGenre());
             borrowed.setStudent(student);
@@ -97,6 +101,7 @@ public class BorrowedController {
             book = new Book();
             book.setTitle(borrowed.getTitle());
             book.setAmount(0);
+            book.setPrice(borrowed.getPrice());
             book.setAuthor(borrowed.getAuthor());
             book.setGenre(borrowed.getGenre());
         }
@@ -118,7 +123,7 @@ public class BorrowedController {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String studentName = null;
         if (principal instanceof UserDetails) {
-            studentName = ((UserDetails)principal).getUsername();
+            studentName = ((UserDetails) principal).getUsername();
         } else {
             studentName = principal.toString();
         }
@@ -133,5 +138,16 @@ public class BorrowedController {
             return false;
         }
         return true;
+    }
+
+    private int calculateMoney(List<Borrowed> borroweds) {
+        int money = 0;
+        if (!borroweds.isEmpty()) {
+            money = borroweds
+                    .stream()
+                    .map(obj -> obj.getPrice() * obj.getBorrowedAmount())
+                    .reduce(0, Integer::sum);
+        }
+        return money;
     }
 }

@@ -41,15 +41,20 @@
                                 <th>Genre Name</th>
                                 <th sec:authorize="hasAuthority('ROLE_LIBRARIAN')">Edit</th>
                                 <th sec:authorize="hasAuthority('ROLE_LIBRARIAN')">Remove</th>
+                                <th>Find Books on Shelves</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr th:each="genre : ${genres}">
                                 <td th:text="${genre.genreName}"></td>
-                                <td sec:authorize="hasAuthority('ROLE_LIBRARIAN')"><a th:href="@{/updateGenre/{id}(id=${genre.genreId})}" class="btn btn-primary"><i
+                                <td sec:authorize="hasAuthority('ROLE_LIBRARIAN')"><a
+                                        th:href="@{/updateGenre/{id}(id=${genre.genreId})}" class="btn btn-primary"><i
                                         class="fas fa-marker ml-2"></i></a></td>
-                                <td sec:authorize="hasAuthority('ROLE_LIBRARIAN')"><a th:href="@{/remove-genre/{id}(id=${genre.genreId})}" class="btn btn-primary"><i
+                                <td sec:authorize="hasAuthority('ROLE_LIBRARIAN')"><a
+                                        th:href="@{/remove-genre/{id}(id=${genre.genreId})}" class="btn btn-primary"><i
                                         class="fa-solid fa-minus ml-1 mr-1"></i></a></td>
+                                <td><a th:href="@{/see/{shelf}(shelf=${genre.genreName})}" class="btn btn-primary"><i
+                                        class="fa-solid fa-rocket ml-1 mr-1"></i></a></td>
                             </tr>
                             </tbody>
                         </table>

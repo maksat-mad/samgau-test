@@ -30,6 +30,9 @@ public class Borrowed {
     @Column(name = "borrowed_amount")
     private Integer borrowedAmount;
 
+    @Column(name = "price")
+    private Integer price;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "author_id")
     @JsonIgnore

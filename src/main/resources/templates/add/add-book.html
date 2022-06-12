@@ -33,6 +33,11 @@
 							</div>
 
 							<div class="form-group col-md-8">
+								<label for="price" class="col-form-label">Price</label>
+								<input type="text" th:field="*{price}" required="required" pattern="[1-9]\d*" class="form-control" id="price" placeholder="Price" />
+							</div>
+
+							<div class="form-group col-md-8">
 								<label for="author" class="col-form-label">Author</label>
 								<select th:field ="*{author}" class="form-control" >
 									<option th:each="author1: ${allAuthors}" th:value="${author1.authorId}" th:text = "${author1.authorName}"></option>

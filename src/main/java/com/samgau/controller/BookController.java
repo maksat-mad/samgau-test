@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class BookController {
@@ -101,5 +102,15 @@ public class BookController {
         bookService.deleteBook(id);
         model.addAttribute("book", bookService.findAllBooks());
         return "redirect:/books";
+    }
+
+    @GetMapping("/see/{shelf}")
+    public String showShelfBooks(@PathVariable("shelf") String shelf, Model model) {
+        final List<Book> books = bookService.findAllBooks()
+                .stream()
+                .filter(obj -> obj.getGenre().getGenreName().equals(shelf))
+                .collect(Collectors.toList());
+        model.addAttribute("books", books);
+        return "list/list-books";
     }
 }
