@@ -1,12 +1,10 @@
 package com.samgau.security;
 
 import com.google.common.collect.Sets;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Set;
 import java.util.stream.Collectors;
-import com.samgau.security.UserPermission;
 
 import static com.samgau.security.UserPermission.*;
 

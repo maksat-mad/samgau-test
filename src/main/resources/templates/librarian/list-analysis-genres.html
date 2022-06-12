@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Analysis Genres</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
+
+</head>
+<body>
+<div th:insert="fragments/header :: header"></div>
+<div class="container my-2">
+    <div class="card">
+        <div class="card-body">
+            <div th:switch="${genres}" class="container my-5">
+
+                <div class="col-md-12">
+                    <div>
+                        <table class="table table-striped table-responsive-md">
+                            <thead>
+                            <tr>
+                                <th>Genre Name</th>
+                                <th>Number of Times Searched</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="genre : ${genres}">
+                                <td th:text="${genre.name}"></td>
+                                <td th:text="${genre.count}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="margin-top: 100px" th:insert="fragments/footer :: footer"></div>
+</body>
+
+</html>

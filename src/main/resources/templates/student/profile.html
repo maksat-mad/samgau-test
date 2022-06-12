@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
+
+</head>
+<body>
+<div th:insert="fragments/header :: header"></div>
+<div class="container my-2">
+    <div class="card">
+        <div class="card-body">
+            <div th:switch="${borroweds}" class="container my-5">
+
+                <div class="col-md-12">
+                    <div>
+                        <table class="table table-striped table-responsive-md">
+                            <thead>
+                            <tr>
+                                <th>Student Name</th>
+                                <th>Title</th>
+                                <th>Author Name</th>
+                                <th>Genre</th>
+                                <th>Available</th>
+                                <th>RETURN</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="borrowed : ${borroweds}">
+                                <td th:text="${borrowed.student != null} ? ${borrowed.student.studentName} : 'no student name'"></td>
+                                <td th:text="${borrowed.title}"></td>
+                                <td th:text="${borrowed.author != null} ? ${borrowed.author.authorName} : 'no author'"></td>
+                                <td th:text="${borrowed.genre != null} ? ${borrowed.genre.genreName} : 'no genre'"></td>
+                                <td th:text="${borrowed.borrowedAmount}"></td>
+
+                                <td><a
+                                        th:href="@{/return/{id}(id=${borrowed.borrowedId})}" class="btn btn-primary">RETURN</a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="margin-top: 100px" th:insert="fragments/footer :: footer"></div>
+</body>
+
+</html>

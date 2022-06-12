@@ -24,4 +24,7 @@ public class Genre {
 
     @OneToMany(mappedBy = "genre", fetch = FetchType.EAGER)
     private List<Book> books = new ArrayList<>();
+
+    @OneToMany(mappedBy = "genre", fetch = FetchType.LAZY)
+    private List<Borrowed> borroweds = new ArrayList<>();
 }

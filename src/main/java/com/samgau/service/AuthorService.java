@@ -6,16 +6,16 @@ import java.util.List;
 
 public interface AuthorService {
 
-	public List<Author> findAllAuthors();
+	List<Author> findAllAuthors();
 
-	public List<Author> searchAuthors(String keyword);
+	List<Author> searchAuthors(String keyword);
 
-	public Author findAuthorById(Long id);
+	Author findAuthorById(Long id);
 
-	public void createAuthor(Author author);
+	void createAuthor(Author author);
 
-	public void updateAuthor(Author author);
+	void updateAuthor(Author author);
 
-	public void deleteAuthor(Long id);
+	void deleteAuthor(Long id);
 
 }

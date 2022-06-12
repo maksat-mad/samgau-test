@@ -12,14 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.web.authentication.rememberme.InMemoryTokenRepositoryImpl;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-import org.springframework.security.web.util.matcher.AndRequestMatcher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import javax.servlet.http.Cookie;
-import java.net.CookieStore;
-import java.util.concurrent.TimeUnit;
 
 import static com.samgau.security.UserRole.LIBRARIAN;
 import static com.samgau.security.UserRole.STUDENT;
@@ -44,23 +37,30 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "index",
                         "/authors", "/books", "/genres",
                         "/searchAuthor", "/searchBook", "/searchGenre").permitAll()
-                //.antMatchers("/authors/**").hasRole(STUDENT.name())
+                .antMatchers("/profile").hasRole(STUDENT.name())
+                .antMatchers("/profile/**").hasAnyRole(STUDENT.name(), LIBRARIAN.name())
+                .antMatchers("/update/**", "/remove-one-book/**", "/increase-book/**",
+                        "/remove-book/**", "/addAuthor/**", "/addBook/**", "/addGenre/**",
+                        "/updateGenre/**", "/remove-genre/**",
+                        "/updateAuthor/**", "/remove-author/**",
+                        "/borrows/**", "/analysis/**", "/analysisAuthor/**",
+                        "/analysisBook/**", "/analysisGenre/**").hasRole(LIBRARIAN.name())
                 .anyRequest()
                 .authenticated()
                 .and()
                 .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
-                    .defaultSuccessUrl("/", true)
-                    .passwordParameter("password")
-                    .usernameParameter("username")
+                .loginPage("/login")
+                .permitAll()
+                .defaultSuccessUrl("/", true)
+                .passwordParameter("password")
+                .usernameParameter("username")
                 .and()
                 .logout()
-                    .logoutUrl("/logout")
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
-                    .clearAuthentication(true)
-                    .invalidateHttpSession(true)
-                    .logoutSuccessUrl("/");
+                .logoutUrl("/logout")
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET"))
+                .clearAuthentication(true)
+                .invalidateHttpSession(true)
+                .logoutSuccessUrl("/");
     }
 
     @Override

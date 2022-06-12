@@ -1,21 +1,21 @@
 package com.samgau.service;
 
-import java.util.List;
-
 import com.samgau.entity.Book;
+
+import java.util.List;
 
 public interface BookService {
 
-	public List<Book> findAllBooks();
-	
-	public List<Book> searchBooks(String keyword);
+    List<Book> findAllBooks();
 
-	public Book findBookById(Long id);
+    List<Book> searchBooks(String keyword);
 
-	public void createBook(Book book);
+    Book findBookById(Long id);
 
-	public void updateBook(Book book);
+    void createBook(Book book);
 
-	public void deleteBook(Long id);
+    void updateBook(Book book);
+
+    void deleteBook(Long id);
 
 }
